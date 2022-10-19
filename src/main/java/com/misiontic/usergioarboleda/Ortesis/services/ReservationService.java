@@ -97,11 +97,7 @@ public class ReservationService {
       
       public List<CountClient> getTopClients(){
           return reservationRepository.getTopClient();
-      }
-      
-    
-    
-    
+      }    
 
 
 }
