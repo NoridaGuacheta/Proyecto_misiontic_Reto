@@ -31,4 +31,24 @@ public class ReservationRepository {
     public void delete(Reservation reservation){
         reservationCRUDRepository.delete(reservation);
     }
+    
+    // ============ Informe ============ //
+    
+    public List<Reservation> getReservationByStatus (String status){
+        return reservationCrudRepository.findAllByStatus(status);
+    }
+    
+    public List<Reservation> informePeriodoTiempoReservas (Date a, Date b){
+        return reservationCrudRepository.findAllByStartDateAfterAndStartDateBefore(a, b);
+    }
+    
+    public List<CountClient> getTopClient(){
+        List<CountClient> res = new ArrayList<>();
+        List<Object[]> report = reservationCrudRepository.countTotalReservationByClient();
+        for(int i=0;i < report.size();i++){
+            res.add(new CountClient((Long)report.get(i)[1], (Client) report.get(i)[0]));
+        }
+        return res;
+    }
+        
 }
