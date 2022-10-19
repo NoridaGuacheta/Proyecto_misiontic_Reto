@@ -45,6 +45,8 @@ public class ReservationController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public boolean delete(@PathVariable("id") int id){  return reservationService.deleteReservation(id); }
     
+    // ============ Informe ============ //
+    
     @GetMapping("/report-clients")
     public List<CountClient> getReservationsReportClient(){
         return reservationService.getTopClients();
