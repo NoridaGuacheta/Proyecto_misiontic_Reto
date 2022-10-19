@@ -1,9 +1,11 @@
 package com.misiontic.usergioarboleda.Ortesis.controllers;
 
 import com.misiontic.usergioarboleda.Ortesis.models.Reservation;
+import com.misiontic.usergioarboleda.Ortesis.repositories.CountClient;
 import com.misiontic.usergioarboleda.Ortesis.services.ReservationService;
 import java.util.List;
 import java.util.Optional;
+import com.misiontic.usergioarboleda.Ortesis.services.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -34,7 +36,8 @@ public class ReservationController {
     @ResponseStatus(HttpStatus.CREATED)
     public Reservation save(@RequestBody Reservation reservation) {
         return reservationService.save(reservation);
-    }
+    } 
+    
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
     public Reservation update(@RequestBody Reservation reservation) {
