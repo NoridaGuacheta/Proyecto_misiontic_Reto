@@ -68,6 +68,40 @@ public class ReservationService {
         }).orElse(false);
         return d;
     }
+    
+    // ============ Informe ============ //
+    
+     public Status getReservationStatusReport(){
+          List <Reservation> completed = reservationRepository.getReservationByStatus("completed");
+          List <Reservation> cancelled = reservationRepository.getReservationByStatus("cancelled");
+          return new Status (completed.size(), cancelled.size());
+      }
+      
+      public List<Reservation> informePeriodoTiempoReservas(String datoA, String datoB){
+          SimpleDateFormat parser = new SimpleDateFormat("yyyy-MM-dd");
+          Date a = new Date();
+          Date b = new Date();
+          
+          try {
+              a = parser.parse(datoA);
+              b = parser.parse(datoB);
+          }catch(ParseException e){
+              e.printStackTrace();
+          }
+          if(a.before(b)){
+           return reservationRepository.informePeriodoTiempoReservas(a, b);
+          }else{
+              return new ArrayList<>();
+          }
+      }
+      
+      public List<CountClient> getTopClients(){
+          return reservationRepository.getTopClient();
+      }
+      
+    
+    
+    
 
 
 }
